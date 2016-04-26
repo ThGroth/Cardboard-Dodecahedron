@@ -52,7 +52,7 @@
 
         effect = new THREE.StereoEffect(renderer);
 
-        // Our initial control fallback with mouse/touch events in case DeviceOrientation is not enabled
+        // Fallback with mouse/touch events in case DeviceOrientation is not enabled
         controls = new THREE.OrbitControls(camera, element);
         controls.target.set(
           camera.position.x + 0.15,
@@ -62,7 +62,7 @@
         controls.noPan = true;
         controls.noZoom = true;
 
-        // Our preferred controls via DeviceOrientation
+        // Preferred controls via DeviceOrientation
         function setOrientationControls(e) {
           if (!e.alpha) {
             return;
@@ -85,54 +85,7 @@
         lightScene.position.set(0, 5, 0);
         scene.add(lightScene);
 
-        //Flooŕ 
-/*        var floorTexture = THREE.ImageUtils.loadTexture('../textures/wood.jpg');
-        floorTexture.wrapS = THREE.RepeatWrapping;
-        floorTexture.wrapT = THREE.RepeatWrapping;
-        floorTexture.repeat = new THREE.Vector2(50, 50);
-        floorTexture.anisotropy = renderer.getMaxAnisotropy();
-
-        var floorMaterial = new THREE.MeshPhongMaterial({
-          color: 0xffffff,
-          specular: 0xffffff,
-          shininess: 2,
-          shading: THREE.FlatShading,
-          map: floorTexture
-        });
-
-        var geometry = new THREE.PlaneBufferGeometry(1000, 1000);
-
-        var floor = new THREE.Mesh(geometry, floorMaterial);
-        floor.rotation.x = -Math.PI / 2;
-        floor.position.y = -15;
-        scene.add(floor);
-*/
-        //Box
-/*        var geometry = new THREE.BoxGeometry( 5, 5, 5 );
-        var material = new THREE.MeshPhongMaterial({color: 0x156289,
-                                                emissive: 0x072534,
-                                                side: THREE.DoubleSide,
-                                                shading: THREE.FlatShading});
-        var cube = new THREE.Mesh( geometry, material );
-        cube.position.x = 10;
-        cube.position.y = 15;
-        cube.position.z = 10;
-        scene.add( cube );*/
-
-        //Lines
-        // var material = new THREE.LineBasicMaterial({color: 0x0000ff});
-
-        // var geometry = new THREE.Geometry();
-        // geometry.vertices.push(
-        //   new THREE.Vector3( -10, 15, 0 ),
-        //   new THREE.Vector3( 0, 15, 10 ),
-        //   new THREE.Vector3( -10, 15, 0 )
-        // );  
-
-        // var line = new THREE.Line( geometry, material );
-        // scene.add( line );
-
-      
+        // Add the dodecahedron
         for (var i = 0; i < DodeLines.length; i++) {
            scene.add(DodeLines[i]);
          }; 
@@ -143,6 +96,9 @@
         animate();
       }
 
+      function moveModDode() {
+      	//TODO implement this!
+      };
       
       function animate() {
         var elapsedSeconds = clock.getElapsedTime();
