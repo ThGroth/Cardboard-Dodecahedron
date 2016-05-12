@@ -22,7 +22,8 @@
   <script src="../js/OrbitControls.js"></script>
   <script src="../js/geometry.js"></script>
 
-  <script src="dode32.js"></script>
+  <script src="dode32.js"></script> 
+
 
  </head>
  <body>
@@ -76,6 +77,12 @@
         }
         window.addEventListener('deviceorientation', setOrientationControls, true);
 
+
+        //wait for click to move
+        window.addEventListener( 'click', function() {
+			moveModDode();
+		});
+
         // Lighting
         var light = new THREE.PointLight(0x999999, 2, 100);
         light.position.set(50, 50, 50);
@@ -90,6 +97,17 @@
            scene.add(DodeLines[i]);
          }; 
 
+         //Box
+       var geometry = new THREE.BoxGeometry( 5, 5, 5 );
+        var material = new THREE.MeshPhongMaterial({color: 0x156289,
+                                                emissive: 0x072534,
+                                                side: THREE.DoubleSide,
+                                                shading: THREE.FlatShading});
+        var cube = new THREE.Mesh( geometry, material );
+        cube.position.x = 10;
+        cube.position.y = 15;
+        cube.position.z = 10;
+        scene.add( cube );
 
         clock = new THREE.Clock();
 
@@ -97,7 +115,15 @@
       }
 
       function moveModDode() {
-      	//TODO implement this!
+      	//alert("Hi");
+      	var dir = new THREE.Vector3( 5, 0, 0 );
+      	//dir = camera.getWorldDirection();
+      	//alert(dir.x+","+dir.y+","+dir.z);
+      	//camera.position.add(dir);
+      	
+      	controls.panForward(2);
+      	
+      	//alert(camera.position.x+","+camera.position.y+","+camera.position.z);
       };
       
       function animate() {

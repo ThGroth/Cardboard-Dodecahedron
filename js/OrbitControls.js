@@ -169,6 +169,20 @@ THREE.OrbitControls = function ( object, domElement ) {
 
   };
 
+  // pass in distance in world space to move forward
+  // Added by Thorsten
+  this.panForward = function ( distance ) {
+
+    var te = this.object.matrix.elements;
+
+    // get Z column of matrix
+    panOffset.set( te[ 8 ], te[ 9 ], te[ 10 ] );
+    panOffset.multiplyScalar( -1*distance );
+
+    pan.add( panOffset );
+
+  };
+
   // pass in x,y of change desired in pixel space,
   // right and down are positive
   this.pan = function ( deltaX, deltaY ) {
