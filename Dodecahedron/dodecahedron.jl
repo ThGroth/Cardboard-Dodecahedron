@@ -549,7 +549,7 @@ end
 function col(c)
     return hex(round(Int,c.r*256))*hex(round(Int,c.g*256))*hex(round(Int,c.b*256))
 end 
-bound = 4.0
+bound = 4.4
 f = open("dode32.js","w")
 
 println(f,"DodeLines  = [];\n\nvar material = new THREE.LineBasicMaterial({color: 0x0000ff});\n")
